@@ -1,0 +1,37 @@
+import Link from "next/link";
+
+import { getAllTags } from "@/lib/posts";
+
+export const metadata = {
+  title: "Tags | DiárioTeq",
+  description: "Navegação por tags dos posts do DiárioTeq.",
+};
+
+export default function TagsPage() {
+  const tags = getAllTags();
+
+  return (
+    <main className="mx-auto min-h-screen w-full max-w-3xl px-6 py-12">
+      <header className="mb-8 space-y-2">
+        <Link href="/" className="text-sm underline underline-offset-4">
+          ← Início
+        </Link>
+        <h1 className="text-3xl font-semibold tracking-tight">Tags</h1>
+      </header>
+
+      <ul className="flex flex-wrap gap-3">
+        {tags.map((entry) => (
+          <li key={entry.tag}>
+            <Link
+              href={`/tags/${entry.tag}`}
+              className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm hover:bg-neutral-100"
+            >
+              <span>#{entry.tag}</span>
+              <span className="text-neutral-500">({entry.count})</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
+}
