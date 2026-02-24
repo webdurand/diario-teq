@@ -1,0 +1,33 @@
+---
+title: "Diazinho puxado"
+date: "2026-02-24"
+tags: ["devlog", "RAG", "IA", "integração"]
+summary: "Resumo curto do conteúdo"
+---
+
+## Contexto
+Hoje fiquei atolado de serviço, comecei o dia terminando uma feature super complexa: enviar itens paginados para o WhatsApp usando IA. Funciona assim: o usuário solicita uma busca de produto, a IA entende e busca 20 produtos via API, retorna para a API intermediária, armazena esses 20 produtos em cache e já devolve 3 para o usuário, junto com uma mensagem de “ver mais produtos”. Quando o usuário clica em ver mais produtos, ao invés de acionar a LLM de novo, a gente retorna esses produtos que estão no cache.
+
+Consegui fechar até o meio-dia, mas aí veio o Code Review do Copilot e do Cursor :SOS:
+
+Depois disso, o RAG que eu tinha implementado e estava em homologação apareceu com um ajuste. De forma resumida, a gente implementou e testou com uma base de conhecimento em CSV com 2 colunas, só que quando foram validar, usaram uma de 3 colunas e os chunks acabaram não dando certo. Daí consegui ajustar e fazer um fix, mas percebi que se fosse usado outros formatos de CSV, poderia dar problemas parecidos. Por isso sugeri que a gente usasse um formato padrão de CSV. O ideal na verdade é que a gente tornasse a solução agnóstica, mas como ia gastar mais tempo pra validar isso, sugeri isso para o futuro, mas já deixei um PR pronto (fiz com Copilot).
+
+Além disso, fizemos um alinhamento na startup sobre algumas features novas que vamos implementar: teremos uma integração com uma área de membros, adicionaremos a feature de venda comissionada (assim cada pessoa que vender, quem indicou ganha uma parte da comissão), além de uma série de bugs que o QA pegou.
+
+Eu não fiquei com nenhuma feature nova, estou fazendo a integração de um laboratório. Daí o usuário consegue vender produtos desse laboratório direto pela nossa plataforma. Essas integrações são bem complicadas porque não são APIs muito bem documentadas e tem que fazer contato com pessoas de outro país, em inglês e outro fuso. Acho que o pior é validar porque são muitas nuances: tem criação de produto, venda, pagamento, acompanhamento de status de pedidos e tudo isso por si só já é complexo, olhando pra API externa fica mais difícil ainda.
+## O que fiz hoje
+- Finalizei a feature de envio paginado de produtos para o WhatsApp usando IA.
+- Passei pelo Code Review do Copilot e do Cursor.
+- Ajustei o RAG para funcionar com diferentes formatos de CSV.
+- Sugeri padronização do CSV e deixei um PR pronto.
+- Participei de alinhamento sobre novas features e bugs.
+- Continuei a integração com o laboratório internacional.
+## Aprendizados
+- A importância de pensar em formatos de dados flexíveis e padronizados para evitar problemas futuros.
+- Como a integração com APIs externas pode ser cheia de nuances e desafios, principalmente quando envolve comunicação internacional.
+- O valor de documentar e sugerir melhorias mesmo quando não é possível implementar tudo de imediato.
+## Próximos passos
+- Finalizar a integração com o laboratório.
+- Validar todos os fluxos de venda, pagamento e acompanhamento de pedidos.
+- Ajudar na implementação das novas features alinhadas na startup.
+- Monitorar possíveis problemas com formatos de CSV e propor uma solução agnóstica no futuro.
