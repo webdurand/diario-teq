@@ -11,58 +11,58 @@ export const contentType = "image/png";
 
 export default function OpenGraphImage() {
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        padding: "64px",
+        background: "#0f172a",
+        color: "#f8fafc",
+        fontFamily: "system-ui, sans-serif",
+      }}
+    >
       <div
         style={{
-          width: "100%",
-          height: "100%",
+          fontSize: 28,
+          opacity: 0.9,
+        }}
+      >
+        DiárioTeq
+      </div>
+      <div
+        style={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          padding: "64px",
-          background: "#0f172a",
-          color: "#f8fafc",
-          fontFamily: "system-ui, sans-serif",
+          gap: 24,
+          maxWidth: 980,
         }}
       >
         <div
           style={{
-            fontSize: 28,
-            opacity: 0.9,
+            display: "flex",
+            flexDirection: "column",
+            fontSize: 72,
+            lineHeight: 1.05,
+            fontWeight: 700,
+            gap: 8,
           }}
         >
-          DiárioTeq
+          <div>Engenharia de software</div>
+          <div>em formato diário</div>
         </div>
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 18,
-            maxWidth: 980,
+            fontSize: 32,
+            color: "#cbd5e1",
           }}
         >
-          <div
-            style={{
-              fontSize: 72,
-              lineHeight: 1.05,
-              fontWeight: 700,
-            }}
-          >
-            Engenharia de software
-            <br />
-            em formato diário
-          </div>
-          <div
-            style={{
-              fontSize: 32,
-              color: "#cbd5e1",
-            }}
-          >
-            {siteConfig.description}
-          </div>
+          {siteConfig.description}
         </div>
       </div>
-    ),
+    </div>,
     size,
   );
 }
