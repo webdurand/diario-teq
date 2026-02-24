@@ -1,0 +1,186 @@
+---
+title: "Porque eu construí meu próprio blog ao invés de usar um pronto?"
+date: "2026-02-24"
+tags: ["arquitetura", "nextjs", "mdx", "ia", "carreira"]
+summary: "Decisão técnica, decisão estratégica e o impacto disso no meu posicionamento."
+---
+
+## A decisão óbvia (que eu ignorei)
+
+Quando decidi criar o DiárioTeq, eu poderia ter usado:
+
+- Notion  
+- Medium  
+- Substack  
+- Qualquer CMS pronto  
+
+Seria rápido.  
+Seria simples.  
+Seria suficiente.  
+
+Mas suficiente não é o mesmo que estratégico.
+
+Eu não queria apenas publicar texto.  
+Eu queria construir a infraestrutura da minha própria narrativa.
+
+---
+
+## A arquitetura do DiárioTeq
+
+O projeto é simples e de propósito.
+
+- Next.js (App Router)
+- Conteúdo em arquivos `.mdx` dentro do repositório
+- Deploy automático
+- Sem banco de dados
+- Sem login
+- Sem painel admin
+
+Ele funciona basicamente assim:
+
+1. Eu escrevo um post em MDX.
+2. O projeto lê os arquivos da pasta `/posts`.
+3. Cada arquivo vira uma rota dinâmica.
+4. Eu faço commit.
+5. O blog está online.
+
+Simples.
+
+Mas controlado.
+
+Eu ainda criei um script:
+
+`npm run create`
+
+Esse comando gera automaticamente um template de post em MDX com:
+
+- frontmatter (title, date, tags, summary)
+- estrutura base
+- padrão visual consistente
+
+Isso elimina fricção.  
+Eu não penso na estrutura.  
+Eu só escrevo.
+
+E o mais importante:
+
+Eu criei isso do zero na primeira vez.
+
+E o repositório está público.
+
+Se você quiser ter um blog igual ao meu, é literalmente só clonar:
+
+https://github.com/webdurand/diario-teq
+
+Instalar as dependências.  
+Rodar.  
+Publicar.
+
+Liberdade replicável.
+
+---
+
+## Por que MDX?
+
+Eu escolhi MDX porque ele permite usar JSX dentro do markdown.
+
+Isso significa que eu posso:
+
+- Inserir componentes React dentro do post
+- Criar callouts personalizados
+- Embutir gráficos
+- Renderizar código interativo
+- Evoluir o blog sem migrar de plataforma
+
+Eu não estou limitado a texto.
+
+Eu estou usando código como ferramenta de expressão.
+
+---
+
+## Em quanto tempo eu criei?
+
+Hoje, criar isso ficou simples por causa da IA.
+
+Eu consigo:
+
+- Estruturar projeto rapidamente
+- Ajustar configuração
+- Resolver erros
+- Refinar arquitetura
+- Otimizar SEO
+
+O que antes exigia horas de documentação, hoje exige clareza de pensamento.
+
+Acredito que talvez eu fosse gastar mais tempo criando uma conta num notion da vida, do que fazendo desse jeito e não teria o mesmo valor.
+
+E isso muda completamente o jogo: Criar ferramenta está ficando mais fácil do que usar ferramenta.
+
+---
+
+## A decisão estratégica (não é só técnica)
+
+Se meu objetivo é ser reconhecido como referência em engenharia de software, então cada decisão importa.
+
+Usar uma ferramenta pronta comunica consumo.  
+Construir comunica domínio.
+
+Isso fortalece meu storytelling.
+
+Eu não estou apenas falando sobre engenharia.  
+Eu estou praticando engenharia na minha própria marca.
+
+Existe um lado humano nisso.
+
+Pessoas não se conectam apenas com resultados.  
+Elas se conectam com processo.  
+Com decisões.  
+Com bastidores.  
+Com intenção.
+
+Quando alguém vê que eu construí minha própria plataforma — e ainda deixei o código aberto — isso não é sobre ego técnico.
+
+É sobre:
+
+- Autonomia  
+- Visão  
+- Capacidade de execução  
+- Clareza estratégica  
+
+E no longo prazo, isso agrega muito mais valor à minha carreira do que simplesmente escrever em uma ferramenta pronta.
+
+---
+
+## O que isso significa para o futuro
+
+Hoje eu ainda dependo do meu conhecimento técnico.
+
+Mas e amanhã?
+
+Quando qualquer pessoa puder gerar uma aplicação inteira apenas descrevendo o que quer?
+
+Talvez o diferencial deixe de ser código.
+
+E passe a ser:
+
+- Entendimento de negócio  
+- Integração de sistemas  
+- Capacidade de orquestrar ferramentas  
+- Visão de mercado  
+
+A IA está democratizando a construção.
+
+E ignorar isso é desperdiçar uma vantagem absurda.
+
+---
+
+Eu não criei apenas um blog.
+
+Eu criei liberdade.
+
+Liberdade de não depender de plataforma.  
+Liberdade de moldar minha ferramenta ao meu processo.  
+Liberdade de evoluir sem limites.  
+
+Se você sabe o que quer construir,  
+nunca foi tão possível construir do seu jeito.

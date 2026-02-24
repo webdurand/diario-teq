@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { getAllPostsMeta, getPostBySlug, getPostSlugs } from "@/lib/posts";
+import {
+  getAllPostsMeta,
+  getPostBySlug,
+  getPostSlugs,
+  normalizeTag,
+} from "@/lib/posts";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -63,7 +68,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           {post.frontmatter.tags.map((tag) => (
             <Link
               key={`${slug}-${tag}`}
-              href={`/tags/${tag}`}
+              href={`/tags/${normalizeTag(tag)}`}
               className="rounded-full border border-neutral-300 px-3 py-1 text-xs text-neutral-700"
             >
               #{tag}

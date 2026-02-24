@@ -5,6 +5,8 @@ import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 
+import { remarkTagLinksPlugin } from "@/lib/remark-tag-links";
+
 const postsDirectory = path.join(process.cwd(), "content/posts");
 
 export type PostFrontmatter = {
@@ -54,13 +56,17 @@ export function getAllPostsMeta(): PostMeta[] {
 export async function getPostBySlug(slug: string) {
   const filePath = path.join(postsDirectory, `${slug}.mdx`);
   const source = fs.readFileSync(filePath, "utf8");
+  const tagEntries = getTagEntries();
 
   const { content, frontmatter } = await compileMDX<PostFrontmatter>({
     source,
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [remarkGfm],
+        remarkPlugins: [
+          remarkGfm,
+          [remarkTagLinksPlugin, { tags: tagEntries }],
+        ],
       },
     },
   });
@@ -94,6 +100,25 @@ export function getPostsByTag(tag: string) {
   );
 }
 
-function normalizeTag(tag: string) {
+export function getTagEntries() {
+  const tagMap = new Map<string, string>();
+
+  for (const post of getAllPostsMeta()) {
+    for (const tag of post.tags) {
+      const normalized = normalizeTag(tag);
+
+      if (!tagMap.has(normalized)) {
+        tagMap.set(normalized, tag.trim());
+      }
+    }
+  }
+
+  return Array.from(tagMap.entries()).map(([normalized, value]) => ({
+    normalized,
+    value,
+  }));
+}
+
+export function normalizeTag(tag: string) {
   return tag.trim().toLowerCase().replace(/\s+/g, "-");
 }

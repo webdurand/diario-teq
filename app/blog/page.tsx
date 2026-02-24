@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getAllPostsMeta } from "@/lib/posts";
+import { getAllPostsMeta, normalizeTag } from "@/lib/posts";
 
 export const metadata = {
   title: "Blog | DiárioTeq",
@@ -43,7 +43,7 @@ export default function BlogPage() {
               {post.tags.map((tag) => (
                 <Link
                   key={`${post.slug}-${tag}`}
-                  href={`/tags/${tag}`}
+                  href={`/tags/${normalizeTag(tag)}`}
                   className="rounded-full border border-neutral-300 px-3 py-1 text-xs text-neutral-700"
                 >
                   #{tag}
