@@ -84,6 +84,7 @@ a:hover {
 
 .mdx-content code {
   background: rgb(245 245 245);
+  color: rgb(23 23 23);
   padding: 0.15rem 0.35rem;
   border-radius: 0.25rem;
   font-size: 0.9em;
@@ -100,5 +101,13 @@ a:hover {
 
 .mdx-content pre code {
   background: transparent;
+  color: inherit;
   padding: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .mdx-content :not(pre) > code {
+    background: rgb(38 38 38);
+    color: rgb(229 231 235);
+  }
 }
