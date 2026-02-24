@@ -1,17 +1,22 @@
 import Link from "next/link";
 
 import { getAllTags } from "@/lib/posts";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Tags | DiárioTeq",
+export const metadata = buildMetadata({
+  title: "Tags",
   description: "Navegação por tags dos posts do DiárioTeq.",
-};
+  path: "/tags",
+});
 
 export default function TagsPage() {
   const tags = getAllTags();
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-3xl px-6 py-14 md:py-18">
+    <main
+      id="conteudo-principal"
+      className="mx-auto min-h-screen w-full max-w-3xl px-6 py-14 md:py-18"
+    >
       <header className="mb-10 space-y-3 border-b border-neutral-200 pb-8">
         <Link
           href="/"

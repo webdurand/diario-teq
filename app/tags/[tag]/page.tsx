@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { getAllTags, getPostsByTag } from "@/lib/posts";
+import { buildMetadata } from "@/lib/seo";
 
 type PageProps = {
   params: Promise<{ tag: string }>;
@@ -15,10 +16,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { tag } = await params;
 
-  return {
-    title: `#${tag} | DiárioTeq`,
+  return buildMetadata({
+    title: `#${tag}`,
     description: `Posts marcados com a tag ${tag}.`,
-  };
+    path: `/tags/${tag}`,
+  });
 }
 
 export default async function TagPage({ params }: PageProps) {
@@ -30,7 +32,10 @@ export default async function TagPage({ params }: PageProps) {
   }
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-3xl px-6 py-14 md:py-18">
+    <main
+      id="conteudo-principal"
+      className="mx-auto min-h-screen w-full max-w-3xl px-6 py-14 md:py-18"
+    >
       <header className="mb-10 space-y-3 border-b border-neutral-200 pb-8">
         <Link
           href="/tags"

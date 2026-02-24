@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto, Roboto_Slab } from "next/font/google";
 import "./globals.css";
+import { buildMetadata, siteConfig } from "@/lib/seo";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -17,8 +18,11 @@ const robotoSlab = Roboto_Slab({
 });
 
 export const metadata: Metadata = {
-  title: "DiárioTeq",
-  description: "Blog minimalista para documentar a jornada diária em engenharia de software.",
+  ...buildMetadata({
+    description: siteConfig.description,
+    path: "/",
+  }),
+  metadataBase: new URL(siteConfig.url),
 };
 
 export default function RootLayout({
@@ -29,6 +33,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${roboto.variable} ${robotoSlab.variable} antialiased`}>
+        <a href="#conteudo-principal" className="skip-link">
+          Pular para o conteúdo principal
+        </a>
         {children}
       </body>
     </html>

@@ -8,6 +8,7 @@ import {
   getPostSlugs,
   normalizeTag,
 } from "@/lib/posts";
+import { buildMetadata } from "@/lib/seo";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -22,15 +23,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = getAllPostsMeta().find((item) => item.slug === slug);
 
   if (!post) {
-    return {
-      title: "Post não encontrado | DiárioTeq",
-    };
+    return buildMetadata({
+      title: "Post não encontrado",
+      path: `/blog/${slug}`,
+    });
   }
 
-  return {
-    title: `${post.title} | DiárioTeq`,
+  return buildMetadata({
+    title: post.title,
     description: post.summary,
-  };
+    path: `/blog/${slug}`,
+    type: "article",
+    publishedTime: post.date,
+    tags: post.tags,
+  });
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
@@ -48,7 +54,10 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-3xl px-6 py-14 md:py-18">
+    <main
+      id="conteudo-principal"
+      className="mx-auto min-h-screen w-full max-w-3xl px-6 py-14 md:py-18"
+    >
       <header className="mb-10 space-y-3 border-b border-neutral-200 pb-8">
         <Link
           href="/blog"

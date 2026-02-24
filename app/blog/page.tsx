@@ -1,17 +1,23 @@
 import Link from "next/link";
 
 import { getAllPostsMeta, normalizeTag } from "@/lib/posts";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Blog | DiárioTeq",
-  description: "Posts sobre engenharia de software, em formato diário.",
-};
+export const metadata = buildMetadata({
+  title: "Blog",
+  description:
+    "Posts sobre engenharia de software, IA e carreira em formato diário.",
+  path: "/blog",
+});
 
 export default function BlogPage() {
   const posts = getAllPostsMeta();
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-3xl px-6 py-14 md:py-18">
+    <main
+      id="conteudo-principal"
+      className="mx-auto min-h-screen w-full max-w-3xl px-6 py-14 md:py-18"
+    >
       <header className="mb-10 space-y-3 border-b border-neutral-200 pb-8">
         <Link
           href="/"
