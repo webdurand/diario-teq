@@ -47,6 +47,14 @@ summary: "Resumo curto do conteúdo"
 4. Push para branch conectada na Vercel
 5. Deploy automático publica o post
 
+### Comando para criar post
+
+```bash
+npm run create -- "Título do post"
+```
+
+Se não passar título, o comando pergunta no terminal e gera automaticamente o arquivo em `content/posts` com frontmatter + seções base.
+
 ## Rodar local
 
 ```bash

@@ -11,22 +11,28 @@ export default function BlogPage() {
   const posts = getAllPostsMeta();
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-3xl px-6 py-12">
-      <header className="mb-8 space-y-2">
-        <Link href="/" className="text-sm underline underline-offset-4">
+    <main className="mx-auto min-h-screen w-full max-w-3xl px-6 py-14 md:py-18">
+      <header className="mb-10 space-y-3 border-b border-neutral-200 pb-8">
+        <Link
+          href="/"
+          className="text-sm text-neutral-700 underline underline-offset-4"
+        >
           ← Início
         </Link>
-        <h1 className="text-3xl font-semibold tracking-tight">Blog</h1>
+        <h1 className="text-4xl tracking-tight">Blog</h1>
       </header>
 
       <ul className="space-y-8">
         {posts.map((post) => (
-          <li key={post.slug} className="space-y-2 border-b pb-6">
+          <li
+            key={post.slug}
+            className="space-y-2 border-b border-neutral-200 pb-7"
+          >
             <p className="text-sm text-neutral-500">{formatDate(post.date)}</p>
 
             <Link
               href={`/blog/${post.slug}`}
-              className="text-2xl font-medium leading-tight hover:underline"
+              className="text-2xl leading-tight hover:underline"
             >
               {post.title}
             </Link>
@@ -38,7 +44,7 @@ export default function BlogPage() {
                 <Link
                   key={`${post.slug}-${tag}`}
                   href={`/tags/${tag}`}
-                  className="rounded-full border px-3 py-1 text-xs hover:bg-neutral-100"
+                  className="rounded-full border border-neutral-300 px-3 py-1 text-xs text-neutral-700"
                 >
                   #{tag}
                 </Link>

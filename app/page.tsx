@@ -5,9 +5,9 @@ export default function Home() {
   const latestPosts = getAllPostsMeta().slice(0, 5);
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-8 px-6 py-12">
-      <header className="space-y-3">
-        <h1 className="text-4xl font-semibold tracking-tight">DiárioTeq</h1>
+    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col gap-10 px-6 py-14 md:py-18">
+      <header className="space-y-3 border-b border-neutral-200 pb-8">
+        <h1 className="text-4xl tracking-tight md:text-5xl">DiárioTeq</h1>
         <p className="text-neutral-600">
           Escrever → salvar → commit → publicado.
         </p>
@@ -15,23 +15,31 @@ export default function Home() {
 
       <section className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-medium">Posts recentes</h2>
-          <Link href="/blog" className="text-sm underline underline-offset-4">
+          <h2 className="text-xl">Posts recentes</h2>
+          <Link
+            href="/blog"
+            className="text-sm text-neutral-700 underline underline-offset-4"
+          >
             Ver todos
           </Link>
         </div>
 
-        <ul className="space-y-4">
+        <ul className="space-y-6">
           {latestPosts.map((post) => (
-            <li key={post.slug} className="border-b pb-4">
-              <p className="text-sm text-neutral-500">{formatDate(post.date)}</p>
+            <li
+              key={post.slug}
+              className="space-y-1 border-b border-neutral-200 pb-5"
+            >
+              <p className="text-sm text-neutral-500">
+                {formatDate(post.date)}
+              </p>
               <Link
                 href={`/blog/${post.slug}`}
-                className="text-lg font-medium hover:underline"
+                className="text-xl leading-tight hover:underline"
               >
                 {post.title}
               </Link>
-              <p className="text-sm text-neutral-700">{post.summary}</p>
+              <p className="text-neutral-700">{post.summary}</p>
             </li>
           ))}
         </ul>

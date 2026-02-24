@@ -11,12 +11,15 @@ export default function TagsPage() {
   const tags = getAllTags();
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-3xl px-6 py-12">
-      <header className="mb-8 space-y-2">
-        <Link href="/" className="text-sm underline underline-offset-4">
+    <main className="mx-auto min-h-screen w-full max-w-3xl px-6 py-14 md:py-18">
+      <header className="mb-10 space-y-3 border-b border-neutral-200 pb-8">
+        <Link
+          href="/"
+          className="text-sm text-neutral-700 underline underline-offset-4"
+        >
           ← Início
         </Link>
-        <h1 className="text-3xl font-semibold tracking-tight">Tags</h1>
+        <h1 className="text-4xl tracking-tight">Tags</h1>
       </header>
 
       <ul className="flex flex-wrap gap-3">
@@ -24,7 +27,7 @@ export default function TagsPage() {
           <li key={entry.tag}>
             <Link
               href={`/tags/${entry.tag}`}
-              className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm hover:bg-neutral-100"
+              className="inline-flex items-center gap-2 rounded-full border border-neutral-300 px-4 py-2 text-sm text-neutral-700"
             >
               <span>#{entry.tag}</span>
               <span className="text-neutral-500">({entry.count})</span>
