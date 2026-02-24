@@ -1,0 +1,122 @@
+---
+title: "Um único asterístico quebrou meu RAG"
+date: "2026-02-24"
+tags: ["rag", "debug", "engenharia-de-software", "devlog"]
+summary: "Como um único caractere em uma base de conhecimento quebrou a recuperação de embeddings e me ensinou mais uma vez o poder do debug."
+---
+
+## Contexto
+
+Hoje aconteceu um bagulho muito doido.
+
+Eu estou implementando RAG nos agentes de atendimento do Grupo Boticário. A ideia é simples na teoria:
+indexar a base de conhecimento, gerar embeddings, salvar na base vetorial e recuperar só os chunks relevantes na hora da pergunta.
+
+Bonito no diagrama.
+Caótico quando dá errado.
+
+Durante a validação, foi constatado que uma das bases de teste simplesmente não funcionava.
+As outras funcionavam.
+Mesma estrutura.
+Mesmo pipeline.
+
+Só uma quebrava.
+
+## A Hipótese Errada
+
+Minha primeira suspeita foi o CSV.
+
+Eu tinha testado bases com duas colunas.
+O Tech Lead testou com três.
+
+Na minha cabeça:
+“Ah, é isso. Deve estar quebrando na lógica de parsing.”
+
+Ajustei a forma como eu quebrava linha.
+Testei variações.
+Mexi na forma como o conteúdo era montado antes de gerar os embeddings.
+
+Funcionou em alguns testes.
+
+Mas não era isso.
+
+## O Desafio
+
+Meu Tech Lead veio com uma provocação simples:
+
+“Me prova por log o que está acontecendo.”
+
+E isso muda tudo.
+
+Porque quando alguém te pede prova, você sai da suposição e vai para evidência.
+
+E aí entra o maior poder que existe na engenharia de software:
+
+Debug de verdade.
+
+## O Problema Real
+
+Eu estava usando `*` como delimitador para quebrar linhas na montagem do conteúdo.
+
+Só que em uma única linha da base de conhecimento, tinha um trecho assim:
+
+`***Informação importante aqui***`
+
+Era só uma forma de destacar o texto.
+
+Mas para a minha lógica, aquilo não era destaque.
+Era quebra de estrutura.
+
+Na hora de montar o texto final ficava algo como:
+
+Pergunta: ...
+Resposta: ...
+
+Só que nesse ponto específico, o parsing quebrava errado.
+
+O resultado?
+
+- Um chunk ficava truncado.
+- Um embedding era gerado de forma inconsistente.
+- Na hora da recuperação vetorial, aquele trecho se perdia.
+- Perguntas simples não encontravam resposta.
+
+Uma única linha.
+Um único padrão inesperado.
+Quebrando a recuperação inteira.
+
+## O Custo Invisível
+
+Eu usei IA.
+Usei Copilot.
+Testei hipótese atrás de hipótese.
+
+E mesmo assim eu gastei:
+
+- Tempo
+- Energia
+- Estresse mental
+
+Porque quando o problema não é óbvio, ele vira psicológico.
+
+Você começa a duvidar da arquitetura.
+Depois da modelagem.
+Depois da sua própria lógica.
+
+E no final… era um caractere.
+
+## O Aprendizado
+
+1. RAG não perdoa inconsistência estrutural.
+2. Parsing frágil é bomba-relógio.
+3. Debug profundo > suposição inteligente.
+4. Log bem feito salva arquitetura.
+
+E talvez o maior de todos:
+
+Não é porque o conteúdo “está entrando” que ele está semanticamente íntegro.
+
+Hoje não foi sobre IA.
+Foi sobre engenharia.
+
++1 capítulo do DiárioTeq.
