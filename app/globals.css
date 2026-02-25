@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #1f2937;
+  --blockquote-border: #d4d4d4;
+  --blockquote-background: #f8fafc;
 }
 
 @theme inline {
@@ -15,7 +17,9 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #e5e7eb;
+    --foreground: #f3f4f6;
+    --blockquote-border: #6b7280;
+    --blockquote-background: rgba(255, 255, 255, 0.12);
   }
 }
 
@@ -104,9 +108,11 @@ select:focus-visible,
 }
 
 .mdx-content blockquote {
-  border-left: 3px solid rgb(212 212 212);
-  padding-left: 1rem;
-  color: rgb(82 82 82);
+  border-left: 3px solid var(--blockquote-border);
+  background: var(--blockquote-background);
+  padding: 1rem 1rem 1rem 1.25rem;
+  color: var(--foreground);
+  border-radius: 0.25rem;
 }
 
 .mdx-content code {
