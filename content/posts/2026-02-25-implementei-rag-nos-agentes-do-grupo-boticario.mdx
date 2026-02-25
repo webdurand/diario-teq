@@ -1,0 +1,155 @@
+---
+title: "Implementei RAG nos agentes de atendimento do Grupo Boticário"
+date: "2026-02-25"
+tags: ["genai", "rag", "arquitetura", "engenharia"]
+summary: "A jornada técnica e política para implementar RAG nos agentes de atendimento e reduzir custos com IA."
+---
+
+## O dia que o RAG chegou em produção
+
+Hoje a gente levou para produção o **RAG dos agentes de atendimento do Grupo Boticário**.
+
+Foi uma jornada longa. Técnica. Política. Estratégica.
+
+E eu quero registrar aqui porque não foi só “mais uma feature”.  
+Foi uma mudança estrutural e uma das maiores entregas da minha carreira.
+
+---
+
+## O problema que já existia (mas ninguém tinha parado pra resolver)
+
+Desde os meus estudos em IA, eu já sabia:
+
+> RAG é, muitas vezes, a forma mais eficiente de instruir um agente olhando para custo-benefício em relação à injeção massiva de contexto no prompt.
+
+Quando eu entrei no time de Gen AI, percebi que ainda fazíamos **injeção de contexto direto no prompt**.
+
+E existia uma observação recorrente nas conversas do time:
+- Os custos com IA estavam altos.
+- O consumo de tokens era elevado.
+
+Quando eu vi isso, pensei:
+
+> “Não é possível que a gente não tem RAG aqui.”
+
+Além de ser tecnicamente mais eficiente, isso estava totalmente alinhado com meu **PDI**, que era evoluir em integração de IA.
+
+Alinhei com o time.  
+Esperei o momento certo.  
+E a oportunidade chegou.
+
+---
+
+## Quando eu percebi que não era só técnico
+
+Quando comecei a desenhar a solução, ficou claro:
+
+Isso não era só uma implementação técnica.
+
+Existiam nuances políticas entre os times.
+
+Hoje temos dois times usando a mesma plataforma de gerenciamento de agentes:
+- Time de GenAI de ativação e início (onde eu estou)
+- Time de Backoffice (nossos colegas)
+
+Foi feita a decisão estratégica de engenharia para unificar as plataformas.
+
+Mas havia um detalhe:
+
+O time de Backoffice já tinha implementado RAG.
+
+Então a pergunta virou:
+
+> Como aproveitar o que eles já fizeram sem criar atrito?
+
+---
+
+## Engenharia também é relacionamento
+
+Começamos uma série de conversas para entender:
+- Como eles estruturaram o RAG
+- Quais eram as limitações
+- O que funcionava
+- O que poderia evoluir
+
+Mas não paramos aí.
+
+A gente pensou no futuro.
+
+Porque naquele momento, o gerenciamento de conhecimento funcionava assim:
+
+- Cada agente podia ter vários documentos
+- Mas precisávamos conectar documentos individualmente por agente
+- Se dois agentes compartilhassem o mesmo conteúdo, era preciso duplicar
+
+Isso é ruim para governança.
+
+Se você altera um documento, precisa alterar em vários lugares.
+
+---
+
+## A decisão arquitetural: Many-to-Many
+
+A gente decidiu estruturar a próxima versão com relações **muitas-para-muitas** entre:
+
+- Agentes
+- Bases de conhecimento
+- Documentos
+
+### Agora funciona assim:
+
+- Um agente pode ter várias bases de conhecimento.
+- Uma base pode estar conectada a vários documentos.
+- Vários agentes podem compartilhar a mesma base.
+
+Exemplo:
+
+Crio uma base chamada:
+
+> “Informações Gerais do Grupo Boticário”
+
+Todos os agentes que tiverem essa base:
+- Herdam automaticamente os documentos associados.
+- Se eu alterar um documento, reflete para todos.
+- Governança centralizada.
+- Sem duplicação.
+- Sem retrabalho.
+
+E se eu quiser algo específico?
+
+Crio uma base exclusiva para aquele agente.
+
+Simples. Escalável. Governável.
+
+---
+
+## O impacto real
+
+Essa decisão fez duas coisas:
+
+1. Trouxe uma alternativa para o problema técnico (custo, eficiência e boas práticas de IA).
+2. Ajudou a manter uma boa relação entre os times.
+
+Porque não foi “descartar o que vocês fizeram”.
+
+Foi:
+> Vamos aproveitar, melhorar e já deixar preparado para o futuro da unificação.
+
+Isso muda completamente a dinâmica.
+
+---
+
+## O sentimento
+
+Foi uma grande conquista na minha carreira.
+
+Primeiro grande marco técnico de 2026.
+
+Não foi só sobre código.
+Foi sobre visão.
+Foi sobre arquitetura.
+Foi sobre influência.
+Foi sobre estratégia.
+
+E principalmente:
+Foi sobre usar IA do jeito certo.
