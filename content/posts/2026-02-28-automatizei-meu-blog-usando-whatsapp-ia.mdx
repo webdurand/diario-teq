@@ -1,0 +1,65 @@
+---
+title: "Automatizei meu blog usando WhatsApp + IA"
+date: "2026-02-27"
+tags: ["devlog", "automacao", "ia", "whatsapp"]
+summary: "Como eu criei um fluxo onde mando áudio no WhatsApp e meu post já nasce pronto no blog."
+---
+
+## Contexto
+
+Eu automatizei os posts do meu blog.
+
+Eu estou querendo criar conteúdo pra internet, me tornar referência e tal.
+E por isso eu comecei a escrever um blog. A ideia é simples: ter meus conteúdos organizados, documentar meus aprendizados, minhas histórias… e depois transformar isso em vídeo.
+
+Só que aí eu comecei a pensar:
+
+> Como eu vou alimentar isso com consistência?
+
+Porque escrever todo dia exige ume certa disponibilidade. Se for difícil publicar, eu não publico.
+
+Então eu resolvi fazer uma parada muito legal pra alimentar essa iniciativa.
+
+## A Solução
+
+Eu coloquei no meu WhatsApp um assistente virtual.
+
+Funciona assim:
+
+- Eu mando um áudio.
+- Ele transcreve o que eu falei.
+- Depois ele confirma comigo se está tudo certo.
+- Ao confirmar, ele inicia o processo de postar.
+- Organiza no formato do meu blog.
+- Já gera o MDX estruturado.
+- E posta direto no meu blog.
+
+Ou seja: eu literalmente falo… e o post nasce.
+
+Sem abrir editor.
+Sem copiar e colar.
+Sem distração.
+
+Só ideia → áudio → publicação.
+
+## Arquitetura
+
+Como eu não consegui configurar a API oficial do WhatsApp Business da Meta (é coisa pra caramba pra fazer), eu fiz uma alternativa:
+
+Utilizei Evolution API uma espécie de ponte que recebe as mensagens do zap.
+
+Eu fiz isso tudo em uns 2 dias apenas e usei o seguinte:
+
+- Python pro agente
+- NextJS pro blog
+- Hospedagens e banco de dados free tier
+- Cursor como IDE pro desenvolvimento
+- Gemini Pro 3.1 principalmente como copiloto
+
+E pra fechar deixo meu relato… está incrível trabalhar com o Cursor.
+
+## Reflexão
+
+Isso aqui é mais do que automação.
+
+É solucao de problema, ganho de tempo e eficiência.
