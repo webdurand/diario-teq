@@ -23,6 +23,11 @@ export const metadata: Metadata = {
     path: "/",
   }),
   metadataBase: new URL(siteConfig.url),
+  alternates: {
+    types: {
+      "application/rss+xml": "/rss.xml",
+    },
+  },
 };
 
 export default function RootLayout({

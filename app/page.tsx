@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllPostsMeta } from "@/lib/posts";
 import { buildMetadata } from "@/lib/seo";
+import { formatDate } from "@/lib/format";
 
 export const metadata = buildMetadata({
   description:
@@ -58,9 +59,3 @@ export default function Home() {
   );
 }
 
-function formatDate(dateValue: string) {
-  return new Intl.DateTimeFormat("pt-BR", {
-    dateStyle: "long",
-    timeZone: "UTC",
-  }).format(new Date(dateValue));
-}

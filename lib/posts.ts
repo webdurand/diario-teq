@@ -54,6 +54,10 @@ export function getAllPostsMeta(): PostMeta[] {
 }
 
 export async function getPostBySlug(slug: string) {
+  if (slug.includes('/') || slug.includes('..') || slug.includes('\\')) {
+    const { notFound } = await import('next/navigation');
+    notFound();
+  }
   const filePath = path.join(postsDirectory, `${slug}.mdx`);
   const source = fs.readFileSync(filePath, "utf8");
   const tagEntries = getTagEntries();

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { getAllTags, getPostsByTag } from "@/lib/posts";
 import { buildMetadata } from "@/lib/seo";
+import { formatDate } from "@/lib/format";
 
 type PageProps = {
   params: Promise<{ tag: string }>;
@@ -65,11 +66,4 @@ export default async function TagPage({ params }: PageProps) {
       </ul>
     </main>
   );
-}
-
-function formatDate(dateValue: string) {
-  return new Intl.DateTimeFormat("pt-BR", {
-    dateStyle: "long",
-    timeZone: "UTC",
-  }).format(new Date(dateValue));
 }
